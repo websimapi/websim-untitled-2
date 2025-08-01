@@ -1,9 +1,9 @@
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 
-const WEBSIM_URL_REGEX = /https?:\/\/(?:www\.)?websim\.(?:com|ai)\/(?:p|project|s|c)\/[a-zA-Z0-9-]+(?:\/\d+)?/i;
-const PROJECT_URL_REGEX = /https?:\/\/(?:www\.)?websim\.(?:com|ai)\/p\/([a-zA-Z0-9_-]{20,})/i;
-const SITE_URL_REGEX = /https?:\/\/(?:www\.)?websim\.(?:com|ai)\/s\/([a-zA-Z0-9]{17})/i;
+const WEBSIM_URL_REGEX = /https?:\/\/(?:www\.)?websim\.(?:com|ai|co)\/(?:p|project|s|c)\/[a-zA-Z0-9-]+(?:\/\d+)?/i;
+const PROJECT_URL_REGEX = /https?:\/\/(?:www\.)?websim\.(?:com|ai|co)\/p\/([a-zA-Z0-9_-]{20,})/i;
+const SITE_URL_REGEX = /https?:\/\/(?:www\.)?websim\.(?:com|ai|co)\/s\/([a-zA-Z0-9]{17})/i;
 
 const state = {
     projectId: null,
