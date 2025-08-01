@@ -40,10 +40,10 @@ const elements = {
 
 const constants = {
     EXAMPLE_PROJECTS: [
-        { user: 'api', slug: 'webception' },
-        { user: 'api', slug: 'doom-title' },
-        { user: 'api', slug: 'club-duckling-landing-page' },
-        { user: 'api', slug: 'webscape' },
+        { id: "XW11yBfS6KAZx2a59Y_K", title: "WebClone", description: "A clone of the Websim UI.", url: "https://webclone.on.websim.com", thumbnail: "/a/25b88c6d-aba4-43f9-b7ea-d5519a7699ed" },
+        { id: "vD-2kK4nQ5kZlA1NFPqj", title: "DOOM Title", description: "A recreation of the classic DOOM title screen.", url: "https://doom-title.on.websim.com" },
+        { id: "k7nQyKAdD9lZ4N0j5B2V", title: "Club Duckling", description: "An interactive social menu experience.", url: "https://club-duckling.on.websim.com" },
+        { id: "M0nJkL9dD4lZ4N0j5B2V", title: "Webscape", description: "A nostalgic, interactive desktop UI.", url: "https://webscape.on.websim.com" },
     ],
     MODELS: {
         "Free": ["Kimi K2", "Gemini Flash 2.5 Thinking"],
@@ -121,39 +121,27 @@ function createEntryCard(commentData) {
 
 function createExampleCard(project) {
     const card = document.createElement('a');
-    card.href = `https://websim.com/@${project.created_by.username}/${project.slug}`;
+    card.href = project.url;
     card.target = '_blank';
     card.className = 'example-card';
 
-    const thumbnailUrl = project.thumbnail?.url || `https://images.websim.com/v1/project/${project.id}/_thumbnail`;
+    const thumbnailUrl = project.thumbnail || `https://images.websim.com/v1/project/${project.id}/_thumbnail`;
 
     card.innerHTML = `
         <img src="${thumbnailUrl}" alt="${project.title} thumbnail" class="example-thumbnail">
         <div class="example-info">
             <div class="example-title">${project.title}</div>
-            <div class="example-desc">${project.description || 'An awesome UI project.'}</div>
+            <div class="example-desc">${project.description}</div>
         </div>
     `;
     return card;
 }
 
-async function renderExamples() {
-    for (const example of constants.EXAMPLE_PROJECTS) {
-        try {
-            const response = await fetch(`/api/v1/users/${example.user}/slugs/${example.slug}`);
-            if (!response.ok) {
-                console.error(`Could not fetch example: ${example.user}/${example.slug}`);
-                continue;
-            }
-            const data = await response.json();
-            if (data.project) {
-                const card = createExampleCard(data.project);
-                elements.examplesGrid.appendChild(card);
-            }
-        } catch (error) {
-            console.error(`Error loading example project ${example.slug}:`, error);
-        }
-    }
+function renderExamples() {
+    constants.EXAMPLE_PROJECTS.forEach(project => {
+        const card = createExampleCard(project);
+        elements.examplesGrid.appendChild(card);
+    });
 }
 
 function renderEntry(comment) {
