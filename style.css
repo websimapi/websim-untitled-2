@@ -18,25 +18,22 @@ body {
     margin: 0;
     padding: 20px;
     line-height: 1.6;
-    height: 100vh;
-    overflow: hidden; /* Prevent body from scrolling */
-    box-sizing: border-box;
 }
 
 #app-container {
     max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    height: calc(100vh - 40px);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem; /* Adjusted gap */
-    height: 100%;
 }
 
 header {
     text-align: center;
     border-bottom: 2px solid var(--border-color);
     padding-bottom: 1rem;
-    margin: 0;
+    margin-bottom: 1rem;
     text-shadow: 0 0 10px var(--accent-color);
 }
 
@@ -66,21 +63,66 @@ header .subtitle {
     margin-top: 0.5rem;
 }
 
+#top-right-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 220px;
+}
+
+#top-right-container > div {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem;
+}
+
+#top-right-container h3 {
+    margin-top: 0;
+    font-size: 1rem;
+    text-align: center;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-text);
+}
+
+#top-right-container .prizes ul {
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+#top-right-container #prize-pool-info .pool-display {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+#top-right-container #total-tip-pool {
+    font-size: 1.5rem;
+}
+
+#top-right-container .credits-icon {
+    width: 20px;
+    height: 20px;
+}
+
 #main-content {
     display: flex;
     gap: 2rem;
     flex-grow: 1;
     overflow: hidden; /* Prevent content from pushing footer out */
-    align-items: flex-start;
+    align-items: stretch; /* Stretch children to fill height */
 }
 
 #left-panel {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
     min-width: 400px;
-    max-height: 100%;
     overflow-y: auto; /* Allow left panel to scroll if content is too tall */
     padding-right: 1rem;
 }
@@ -129,26 +171,6 @@ a:hover {
     margin-bottom: 0.5rem;
 }
 
-#top-right-info {
-    display: flex;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-#top-right-info > div {
-    background-color: var(--secondary-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1.5rem;
-    flex: 1;
-}
-
-#top-right-info h3 {
-    margin-top: 0;
-    font-size: 1.2rem;
-    text-align: center;
-}
-
 #prize-pool-info {
     text-align: center;
 }
@@ -156,13 +178,13 @@ a:hover {
 #prize-pool-info .pool-display {
     background-color: var(--primary-bg);
     border-radius: 6px;
-    padding: 1.5rem 1rem;
+    padding: 1rem;
     margin-top: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     flex-direction: column;
 }
 
