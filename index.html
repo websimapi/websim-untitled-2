@@ -27,72 +27,75 @@
             <p class="subtitle">August 1st - 30th</p>
         </header>
 
-        <main>
-            <section id="contest-info">
-                <h2>Contest Details</h2>
-                <p>Develop your best UI Title/Menu for this month's Jam and compete to win big! Entries are judged by contestants and the host, <a href="https://websim.ai/u/api" target="_blank">@api</a>.</p>
-                <p>You may create a new project or add on to any existing project so long as it's specified in your submission.</p>
-                <div class="prizes">
-                    <h3>🏆 Prizes</h3>
-                    <ul>
-                        <li>🥇 <strong>1st Place:</strong> 15,000 Credits</li>
-                        <li>🥈 <strong>2nd Place:</strong> 5,000 Credits</li>
-                        <li>🥉 <strong>3rd Place:</strong> 1,000 Credits</li>
-                    </ul>
-                </div>
-                 <div id="prize-pool-info">
-                    <h3>💸 Community Prize Pool</h3>
-                    <p>Any tips this project receives will boost the prize pool! Half of every tip will be shared equally among ALL contestants at the end of the contest.</p>
-                    <div class="pool-display">
-                        <span>Total Added to Pool:</span>
-                        <strong id="total-tip-pool">
-                            <span class="loading-dots"><span>.</span><span>.</span><span>.</span></span>
-                        </strong>
-                        <img src="credits.png" alt="Credits" class="credits-icon">
+        <main id="main-content">
+            <div id="left-panel">
+                <section id="contest-info">
+                    <h2>Contest Details</h2>
+                    <p>Develop your best UI Title/Menu for this month's Jam and compete to win big! Entries are judged by contestants and the host, <a href="https://websim.ai/u/api" target="_blank">@api</a>.</p>
+                    <p>You may create a new project or add on to any existing project so long as it's specified in your submission.</p>
+                    <div class="prizes">
+                        <h3>🏆 Prizes</h3>
+                        <ul>
+                            <li>🥇 <strong>1st Place:</strong> 15,000 Credits</li>
+                            <li>🥈 <strong>2nd Place:</strong> 5,000 Credits</li>
+                            <li>🥉 <strong>3rd Place:</strong> 1,000 Credits</li>
+                        </ul>
                     </div>
-                </div>
-            </section>
-            
-            <section id="examples-section">
-                <h2>What to Build? (Examples)</h2>
-                <p>The goal is to make a functional, clean UI—either a Title Screen or a Menu of some sort. The project MAY be more than just a menu (e.g., a functional game or application), but the focus is on UI. We will judge based on UI aesthetic and functionality, not gameplay or application experience. You may submit a project that you have already started so long as you specify in your entry.</p>
-                <div class="examples-grid">
-                    <a href="https://webclone.on.websim.com" target="_blank" class="example-card">
-                        <div class="example-title">WebClone</div>
-                        <div class="example-desc">A clone of the Websim UI.</div>
-                    </a>
-                    <a href="https://doom-title.on.websim.com" target="_blank" class="example-card">
-                        <div class="example-title">DOOM Title</div>
-                        <div class="example-desc">A recreation of the classic DOOM title screen.</div>
-                    </a>
-                    <a href="https://club-duckling.on.websim.com" target="_blank" class="example-card">
-                        <div class="example-title">Club Duckling</div>
-                        <div class="example-desc">An interactive social menu experience.</div>
-                    </a>
-                    <a href="https://webscape.on.websim.com" target="_blank" class="example-card">
-                        <div class="example-title">Webscape</div>
-                        <div class="example-desc">A nostalgic, interactive desktop UI.</div>
-                    </a>
-                </div>
-            </section>
-            
-            <section id="how-to-enter">
-                 <h2>How To Enter</h2>
-                <p>To enter the Jam, simply post a comment on this project containing a link to your Websim creation. Your entry will automatically appear below.</p>
-                <button id="post-entry-button">Post Your Entry</button>
-            </section>
+                     <div id="prize-pool-info">
+                        <h3>💸 Community Prize Pool</h3>
+                        <p>Any tips this project receives will boost the prize pool! Half of every tip will be shared equally among ALL contestants at the end of the contest.</p>
+                        <div class="pool-display">
+                            <span>Total Added to Pool:</span>
+                            <strong id="total-tip-pool">
+                                <span class="loading-dots"><span>.</span><span>.</span><span>.</span></span>
+                            </strong>
+                            <img src="credits.png" alt="Credits" class="credits-icon">
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="how-to-enter">
+                     <h2>How To Enter</h2>
+                    <p>To enter the Jam, simply post a comment on this project containing a link to your Websim creation. Your entry will automatically appear below.</p>
+                    <button id="post-entry-button">Post Your Entry</button>
+                </section>
 
+                <section id="examples-section">
+                    <h2>What to Build? (Examples)</h2>
+                    <p>The goal is to make a functional, clean UI—either a Title Screen or a Menu of some sort. The project MAY be more than just a menu (e.g., a functional game or application), but the focus is on UI. We will judge based on UI aesthetic and functionality, not gameplay or application experience. You may submit a project that you have already started so long as you specify in your entry.</p>
+                    <div class="examples-grid">
+                        <a href="https://webclone.on.websim.com" target="_blank" class="example-card">
+                            <div class="example-title">WebClone</div>
+                            <div class="example-desc">A clone of the Websim UI.</div>
+                        </a>
+                        <a href="https://doom-title.on.websim.com" target="_blank" class="example-card">
+                            <div class="example-title">DOOM Title</div>
+                            <div class="example-desc">A recreation of the classic DOOM title screen.</div>
+                        </a>
+                        <a href="https://club-duckling.on.websim.com" target="_blank" class="example-card">
+                            <div class="example-title">Club Duckling</div>
+                            <div class="example-desc">An interactive social menu experience.</div>
+                        </a>
+                        <a href="https://webscape.on.websim.com" target="_blank" class="example-card">
+                            <div class="example-title">Webscape</div>
+                            <div class="example-desc">A nostalgic, interactive desktop UI.</div>
+                        </a>
+                    </div>
+                </section>
+            </div>
 
-            <section id="entries-section">
-                <h2>Jam Entries</h2>
-                <div id="entries-container">
-                    <!-- Entries will be loaded here -->
-                </div>
-                <button id="load-more-button" class="hidden">Load More Entries</button>
-                <div id="loading-indicator" class="hidden">
-                     <div class="loading-dots"><span>.</span><span>.</span><span>.</span></div>
-                </div>
-            </section>
+            <div id="right-panel">
+                <section id="entries-section">
+                    <h2>Jam Entries</h2>
+                    <div id="entries-container">
+                        <!-- Entries will be loaded here -->
+                    </div>
+                    <button id="load-more-button" class="hidden">Load More Entries</button>
+                    <div id="loading-indicator" class="hidden">
+                         <div class="loading-dots"><span>.</span><span>.</span><span>.</span></div>
+                    </div>
+                </section>
+            </div>
         </main>
 
         <footer>
