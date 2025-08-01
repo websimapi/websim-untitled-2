@@ -36,14 +36,15 @@ const elements = {
     submissionError: document.getElementById('submission-error'),
     projectLoadingIndicator: document.getElementById('project-loading-indicator'),
     examplesGrid: document.getElementById('examples-grid'),
+    examplesSection: document.getElementById('examples-section'),
 };
 
 const constants = {
     EXAMPLE_PROJECTS: [
-        { id: "XW11yBfS6KAZx2a59Y_K", title: "WebClone", description: "A clone of the Websim UI.", url: "https://webclone.on.websim.com" },
-        { id: "vD-2kK4nQ5kZlA1NFPqj", title: "DOOM Title", description: "A recreation of the classic DOOM title screen.", url: "https://doom-title.on.websim.com" },
-        { id: "k7nQyKAdD9lZ4N0j5B2V", title: "Club Duckling", description: "An interactive social menu experience.", url: "https://club-duckling.on.websim.com" },
-        { id: "M0nJkL9dD4lZ4N0j5B2V", title: "Webscape", description: "A nostalgic, interactive desktop UI.", url: "https://webscape.on.websim.com" },
+        "@api/webception",
+        "@api/doom-title",
+        "@api/club-duckling-landing-page",
+        "@api/webscape",
     ],
     MODELS: {
         "Free": ["Kimi K2", "Gemini Flash 2.5 Thinking"],
@@ -121,27 +122,56 @@ function createEntryCard(commentData) {
 
 function createExampleCard(project) {
     const card = document.createElement('a');
-    card.href = project.url;
+    // Use project.site_path if available for the link, otherwise construct from id
+    const projectUrl = project.site_path ? `https://${project.site_path}` : `https://websim.com/p/${project.id}`;
+    card.href = projectUrl;
     card.target = '_blank';
     card.className = 'example-card';
 
-    const thumbnailUrl = `https://images.websim.com/v1/project/${project.id}/_thumbnail`;
+    const thumbnailUrl = project.thumbnail?.url || `https://images.websim.com/v1/project/${project.id}/_thumbnail`;
 
     card.innerHTML = `
         <img src="${thumbnailUrl}" alt="${project.title} thumbnail" class="example-thumbnail">
         <div class="example-info">
-            <div class="example-title">${project.title}</div>
-            <div class="example-desc">${project.description}</div>
+            <div class="example-title">${project.title || 'Untitled Project'}</div>
+            <div class="example-desc">${project.description || 'No description available.'}</div>
         </div>
     `;
     return card;
 }
 
-function renderExamples() {
-    constants.EXAMPLE_PROJECTS.forEach(project => {
-        const card = createExampleCard(project);
-        elements.examplesGrid.appendChild(card);
-    });
+async function fetchProjectBySlug(slug) {
+    try {
+        const response = await fetch(`/api/v1/projects/${slug}`);
+        if (!response.ok) {
+            console.error(`Failed to fetch project for slug: ${slug}, status: ${response.status}`);
+            return null;
+        }
+        const { project } = await response.json();
+        return project;
+    } catch (error) {
+        console.error(`Error fetching project for slug ${slug}:`, error);
+        return null;
+    }
+}
+
+async function renderExamples() {
+    elements.examplesGrid.innerHTML = ''; // Clear existing
+    const projectPromises = constants.EXAMPLE_PROJECTS.map(fetchProjectBySlug);
+    const projects = await Promise.all(projectPromises);
+
+    const validProjects = projects.filter(p => p !== null);
+
+    if (validProjects.length > 0) {
+        validProjects.forEach(project => {
+            const card = createExampleCard(project);
+            elements.examplesGrid.appendChild(card);
+        });
+        elements.examplesSection.classList.remove('hidden');
+    } else {
+        // If no examples could be loaded, hide the whole section.
+        elements.examplesSection.classList.add('hidden');
+    }
 }
 
 function renderEntry(comment) {
