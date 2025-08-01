@@ -180,7 +180,12 @@ async function fetchAllTipsAndCalcPool() {
         }
 
         const poolAmount = Math.floor(totalCredits / 2);
-        elements.totalTipPool.textContent = poolAmount.toLocaleString();
+        // Use k for thousands
+        if (poolAmount >= 1000) {
+            elements.totalTipPool.textContent = (poolAmount / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+        } else {
+            elements.totalTipPool.textContent = poolAmount.toLocaleString();
+        }
     } catch (error) {
         console.error("Failed to fetch tips:", error);
         elements.totalTipPool.textContent = 'Error';
