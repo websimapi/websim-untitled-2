@@ -145,6 +145,7 @@ header .subtitle {
     flex-grow: 1;
     overflow: hidden; /* Prevent content from pushing footer out */
     align-items: stretch; /* Stretch children to fill height */
+    height: 100%;
 }
 
 #left-panel {
@@ -155,10 +156,6 @@ header .subtitle {
     min-width: 400px;
     overflow-y: auto; /* Allow left panel to scroll if content is too tall */
     padding-right: 1rem;
-}
-
-#examples-section {
-    display: none;
 }
 
 #right-panel {
@@ -233,6 +230,85 @@ a:hover {
     width: 24px;
     height: 24px;
     margin-top: 0.5rem;
+}
+
+#examples-section {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+#examples-section h2 {
+    text-align: center;
+    border-bottom: none;
+    margin-bottom: 1.5rem;
+}
+
+#examples-section .examples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.example-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-align: left;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.example-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2);
+    border-color: var(--accent-color);
+    text-decoration: none;
+}
+
+.example-card .example-thumbnail {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    background-color: var(--primary-bg);
+}
+
+.example-card .example-info {
+    padding: 1rem;
+}
+
+.example-card .example-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--primary-text);
+    margin-bottom: 0.5rem;
+}
+
+.example-card .example-desc {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+    line-height: 1.4;
+}
+
+#post-entry-button {
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#post-entry-button:hover {
+    background-color: white;
+    box-shadow: 0 0 15px var(--accent-color);
 }
 
 #entries-section {
@@ -312,7 +388,7 @@ a:hover {
 .entry-content p {
     margin: 0;
 }
-.entry-main-content img {
+.entry-content img {
     max-width: 100%;
     max-height: 200px;
     border-radius: 4px;
@@ -382,32 +458,6 @@ footer {
     color: var(--secondary-text);
     font-size: 0.9rem;
     padding-bottom: 1rem;
-}
-
-#examples-section-bottom {
-    background-color: var(--secondary-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-top: 1rem;
-}
-
-#examples-section-bottom p {
-    max-width: 80ch;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    color: var(--secondary-text);
-}
-
-#examples-section-bottom .examples-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
-    margin-top: 1.5rem;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 /* Modal Styles */

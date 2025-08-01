@@ -35,9 +35,16 @@ const elements = {
     prepareSubmissionButton: document.getElementById('prepare-submission-button'),
     submissionError: document.getElementById('submission-error'),
     projectLoadingIndicator: document.getElementById('project-loading-indicator'),
+    examplesGrid: document.getElementById('examples-grid'),
 };
 
 const constants = {
+    EXAMPLE_PROJECTS: [
+        { id: "XW11yBfS6KAZx2a59Y_K", title: "WebClone", description: "A clone of the Websim UI.", url: "https://webclone.on.websim.com" },
+        { id: "vD-2kK4nQ5kZlA1NFPqj", title: "DOOM Title", description: "A recreation of the classic DOOM title screen.", url: "https://doom-title.on.websim.com" },
+        { id: "k7nQyKAdD9lZ4N0j5B2V", title: "Club Duckling", description: "An interactive social menu experience.", url: "https://club-duckling.on.websim.com" },
+        { id: "M0nJkL9dD4lZ4N0j5B2V", title: "Webscape", description: "A nostalgic, interactive desktop UI.", url: "https://webscape.on.websim.com" },
+    ],
     MODELS: {
         "Free": ["Kimi K2", "Gemini Flash 2.5 Thinking"],
         "Standard": ["Gemini 2.5 Pro", "04-mini Thinking", "Sonnet 4"],
@@ -82,12 +89,6 @@ function createEntryCard(commentData) {
     // This will render the main content, including the link.
     contentDiv.innerHTML = sanitizeAndParseMarkdown(raw_content);
 
-    const mainContentContainer = document.createElement('div');
-    mainContentContainer.className = 'entry-main-content';
-    mainContentContainer.innerHTML = sanitizeAndParseMarkdown(raw_content.split('**Models Used:**')[0].split('**Features Used:**')[0]);
-    contentDiv.innerHTML = ''; // Clear it
-    contentDiv.appendChild(mainContentContainer);
-
     // Add sections for details if they exist
     const detailsContainer = document.createElement('div');
     detailsContainer.className = 'entry-details';
@@ -116,6 +117,31 @@ function createEntryCard(commentData) {
     }
     
     return card;
+}
+
+function createExampleCard(project) {
+    const card = document.createElement('a');
+    card.href = project.url;
+    card.target = '_blank';
+    card.className = 'example-card';
+
+    const thumbnailUrl = `https://images.websim.com/v1/project/${project.id}/_thumbnail`;
+
+    card.innerHTML = `
+        <img src="${thumbnailUrl}" alt="${project.title} thumbnail" class="example-thumbnail">
+        <div class="example-info">
+            <div class="example-title">${project.title}</div>
+            <div class="example-desc">${project.description}</div>
+        </div>
+    `;
+    return card;
+}
+
+function renderExamples() {
+    constants.EXAMPLE_PROJECTS.forEach(project => {
+        const card = createExampleCard(project);
+        elements.examplesGrid.appendChild(card);
+    });
 }
 
 function renderEntry(comment) {
@@ -358,6 +384,7 @@ async function init() {
             fetchAllTipsAndCalcPool()
         ]);
         
+        renderExamples();
         populateCheckboxes();
 
         elements.loadMoreButton.addEventListener('click', () => fetchComments(state.commentsCursor));
