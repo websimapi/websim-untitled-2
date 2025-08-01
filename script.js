@@ -82,6 +82,12 @@ function createEntryCard(commentData) {
     // This will render the main content, including the link.
     contentDiv.innerHTML = sanitizeAndParseMarkdown(raw_content);
 
+    const mainContentContainer = document.createElement('div');
+    mainContentContainer.className = 'entry-main-content';
+    mainContentContainer.innerHTML = sanitizeAndParseMarkdown(raw_content.split('**Models Used:**')[0].split('**Features Used:**')[0]);
+    contentDiv.innerHTML = ''; // Clear it
+    contentDiv.appendChild(mainContentContainer);
+
     // Add sections for details if they exist
     const detailsContainer = document.createElement('div');
     detailsContainer.className = 'entry-details';
