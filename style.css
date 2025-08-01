@@ -172,10 +172,31 @@ a:hover {
     flex-direction: column;
     gap: 1rem;
     transition: box-shadow 0.3s ease;
+    padding-bottom: 4rem;
+    position: relative;
 }
 
 .entry-card:hover {
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.reply-button {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: transparent;
+    color: var(--secondary-text);
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--font-body);
+}
+
+.reply-button:hover {
+    background-color: var(--border-color);
+    color: var(--primary-text);
 }
 
 .entry-header {
@@ -320,7 +341,7 @@ footer {
 }
 
 .modal-section {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     border-top: 1px solid var(--border-color);
     padding-top: 1.5rem;
 }
@@ -382,6 +403,7 @@ footer {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: var(--primary-text);
 }
 
 .separator {

@@ -103,11 +103,23 @@ function createEntryCard(commentData) {
         detailsContainer.appendChild(featuresGroup);
     }
 
+    // Add a reply button
+    const replyButton = document.createElement('button');
+    replyButton.className = 'reply-button';
+    replyButton.textContent = 'Reply';
+    replyButton.onclick = () => {
+        window.websim.postComment({
+            parent_comment_id: id,
+            content: `@${author.username} `
+        });
+    };
+    
     card.appendChild(header);
     card.appendChild(contentDiv);
     if(detailsContainer.children.length > 0) {
         contentDiv.appendChild(detailsContainer);
     }
+    card.appendChild(replyButton);
     
     return card;
 }
@@ -281,17 +293,21 @@ function closeSubmissionModal() {
 function handlePrepareSubmission() {
     const manualUrl = elements.manualUrlInput.value.trim();
     let projectUrl = '';
-    let projectTitle = 'My Project';
+    let projectTitle = 'My Project Submission';
 
     if (state.selectedProject) {
         projectUrl = `https://websim.com/p/${state.selectedProject.id}`;
         projectTitle = state.selectedProject.title || projectTitle;
     } else if (WEBSIM_URL_REGEX.test(manualUrl)) {
         projectUrl = manualUrl;
+        // Attempt to create a better title from URL
         const pMatch = manualUrl.match(PROJECT_URL_REGEX);
         const sMatch = manualUrl.match(SITE_URL_REGEX);
-        if (pMatch) projectTitle = `Project ${pMatch[1].substring(0, 5)}...`;
-        if (sMatch) projectTitle = `Site ${sMatch[1].substring(0, 5)}...`;
+        if (pMatch) {
+            projectTitle = `Project Entry`;
+        } else if (sMatch) {
+            projectTitle = `Site Entry`;
+        }
     } else {
         elements.submissionError.textContent = 'Please select a project or enter a valid Websim URL.';
         elements.submissionError.classList.remove('hidden');
@@ -326,14 +342,14 @@ function handleNewComment(event) {
 function handleScroll() {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
     if (scrollTop + clientHeight >= scrollHeight - 100) {
-        fetchComments(state.commentsCursor);
+        if (!state.isLoading && !state.allCommentsLoaded) {
+            fetchComments(state.commentsCursor);
+        }
     }
 }
 
 function handlePostEntry() {
-    window.websim.postComment({
-        content: "Check out my project for the UI Jam! https://websim.ai/p/your-project-id",
-    });
+    openSubmissionModal();
 }
 
 async function init() {
@@ -350,7 +366,7 @@ async function init() {
         populateCheckboxes();
 
         elements.loadMoreButton.addEventListener('click', () => fetchComments(state.commentsCursor));
-        elements.postEntryButton.addEventListener('click', openSubmissionModal);
+        elements.postEntryButton.addEventListener('click', handlePostEntry);
         
         // Modal Listeners
         elements.closeModalButton.addEventListener('click', closeSubmissionModal);
@@ -382,12 +398,15 @@ async function init() {
             const el = elements.userProjectsContainer;
             if (el.scrollTop + el.clientHeight >= el.scrollHeight - 5) {
                 if (!state.allProjectsLoaded) {
-                    fetchUserProjects(state.userProjectsCursor, state.currentSearchTerm);
+                    elements.userProjectsContainer.innerHTML = ''; // Clear previous results
+                    state.userProjectsCursor = null; // Reset cursor for new search
+                    await fetchUserProjects(null, state.currentSearchTerm);
                 }
             }
         });
 
         window.websim.addEventListener('comment:created', handleNewComment);
+        window.addEventListener('scroll', handleScroll);
         
     } catch (error) {
         console.error("Initialization failed:", error);
