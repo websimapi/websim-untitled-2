@@ -240,10 +240,6 @@ a:hover {
     margin-top: 2rem;
 }
 
-#examples-section.hidden {
-    display: none;
-}
-
 #examples-section h2 {
     text-align: center;
     border-bottom: none;
