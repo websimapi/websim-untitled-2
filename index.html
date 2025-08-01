@@ -31,6 +31,7 @@
             <section id="contest-info">
                 <h2>Contest Details</h2>
                 <p>Develop your best UI Title/Menu for this month's Jam and compete to win big! Entries are judged by contestants and the host, <a href="https://websim.ai/u/api" target="_blank">@api</a>.</p>
+                <p>You may create a new project or add on to any existing project so long as it's specified in your submission.</p>
                 <div class="prizes">
                     <h3>🏆 Prizes</h3>
                     <ul>
@@ -64,6 +65,7 @@
                 <div id="entries-container">
                     <!-- Entries will be loaded here -->
                 </div>
+                <button id="load-more-button" class="hidden">Load More Entries</button>
                 <div id="loading-indicator" class="hidden">
                      <div class="loading-dots"><span>.</span><span>.</span><span>.</span></div>
                 </div>
@@ -74,8 +76,51 @@
             <p>A Websim Community Event</p>
         </footer>
     </div>
+
+    <div id="submission-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="close-modal-button" class="close-button">&times;</button>
+            <h2>Submit Your Entry</h2>
+
+            <div class="modal-section">
+                <h3>1. Select Your Project</h3>
+                <div id="project-selection">
+                    <input type="text" id="project-search-input" placeholder="Search your projects...">
+                    <div id="user-projects-container">
+                        <!-- User projects will be loaded here -->
+                    </div>
+                    <div id="project-loading-indicator" class="hidden">
+                        <div class="loading-dots"><span>.</span><span>.</span><span>.</span></div>
+                    </div>
+                </div>
+                <p class="separator">OR</p>
+                <input type="text" id="manual-url-input" placeholder="Manually enter a Websim project URL">
+            </div>
+
+            <div class="modal-section">
+                <h3>2. Tech Used (Optional)</h3>
+                <div class="checkbox-groups">
+                    <fieldset>
+                        <legend>AI Models</legend>
+                        <div id="models-checkboxes">
+                            <!-- JS will populate -->
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Experimental Features</legend>
+                        <div id="features-checkboxes">
+                            <!-- JS will populate -->
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            
+            <button id="prepare-submission-button" disabled>Prepare Submission</button>
+            <p id="submission-error" class="error-message hidden"></p>
+        </div>
+    </div>
+
     <script type="module" src="script.js"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
-
