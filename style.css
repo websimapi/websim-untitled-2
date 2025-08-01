@@ -63,6 +63,13 @@ header .subtitle {
     margin-top: 0.5rem;
 }
 
+#top-left-container {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10;
+}
+
 #top-right-container {
     position: absolute;
     top: 1rem;
@@ -268,15 +275,12 @@ a:hover {
     background-color: var(--accent-color);
     color: var(--primary-bg);
     font-family: var(--font-heading);
-    font-size: 1.2rem;
+    font-size: 1rem;
     border: none;
-    padding: 12px 24px;
+    padding: 10px 20px;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: block;
-    width: 100%;
-    margin-top: 1rem;
 }
 
 #post-entry-button:hover {
