@@ -40,10 +40,10 @@ const elements = {
 
 const constants = {
     EXAMPLE_PROJECTS: [
-        { id: "XW11yBfS6KAZx2a59Y_K", title: "WebClone", description: "A clone of the Websim UI.", url: "https://webclone.on.websim.com" },
-        { id: "vD-2kK4nQ5kZlA1NFPqj", title: "DOOM Title", description: "A recreation of the classic DOOM title screen.", url: "https://doom-title.on.websim.com" },
-        { id: "k7nQyKAdD9lZ4N0j5B2V", title: "Club Duckling", description: "An interactive social menu experience.", url: "https://club-duckling.on.websim.com" },
-        { id: "M0nJkL9dD4lZ4N0j5B2V", title: "Webscape", description: "A nostalgic, interactive desktop UI.", url: "https://webscape.on.websim.com" },
+        { id: "XW11yBfS6KAZx2a59Y_K", title: "WebClone", description: "A clone of the Websim UI.", url: "https://webclone.on.websim.com", slug: "webclone" },
+        { id: "vD-2kK4nQ5kZlA1NFPqj", title: "DOOM Title", description: "A recreation of the classic DOOM title screen.", url: "https://doom-title.on.websim.com", slug: "doom-title" },
+        { id: "k7nQyKAdD9lZ4N0j5B2V", title: "Club Duckling", description: "An interactive social menu experience.", url: "https://club-duckling.on.websim.com", slug: "club-duckling" },
+        { id: "M0nJkL9dD4lZ4N0j5B2V", title: "Webscape", description: "A nostalgic, interactive desktop UI.", url: "https://webscape.on.websim.com", slug: "webscape" },
     ],
     MODELS: {
         "Free": ["Kimi K2", "Gemini Flash 2.5 Thinking"],
@@ -125,7 +125,8 @@ function createExampleCard(project) {
     card.target = '_blank';
     card.className = 'example-card';
 
-    const thumbnailUrl = `https://images.websim.com/v1/project/${project.id}/_thumbnail`;
+    // Use the slug to construct the thumbnail URL, as requested.
+    const thumbnailUrl = `https://images.websim.com/v1/users/api/slugs/${project.slug}/_thumbnail`;
 
     card.innerHTML = `
         <img src="${thumbnailUrl}" alt="${project.title} thumbnail" class="example-thumbnail">
