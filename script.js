@@ -40,7 +40,7 @@ const elements = {
 
 const constants = {
     EXAMPLE_PROJECTS: [
-        { id: "XW11yBfS6KAZx2a59Y_K", title: "WebClone", description: "A clone of the Websim UI.", url: "https://webclone.on.websim.com", thumbnail: "/a/25b88c6d-aba4-43f9-b7ea-d5519a7699ed" },
+        { id: "XW11yBfS6KAZx2a59Y_K", title: "WebClone", description: "A clone of the Websim UI.", url: "https://webclone.on.websim.com", thumbnail: "/a/37eccb1e-7073-4a8d-bd16-0a87b855f700" },
         { id: "vD-2kK4nQ5kZlA1NFPqj", title: "DOOM Title", description: "A recreation of the classic DOOM title screen.", url: "https://doom-title.on.websim.com" },
         { id: "k7nQyKAdD9lZ4N0j5B2V", title: "Club Duckling", description: "An interactive social menu experience.", url: "https://club-duckling.on.websim.com" },
         { id: "M0nJkL9dD4lZ4N0j5B2V", title: "Webscape", description: "A nostalgic, interactive desktop UI.", url: "https://webscape.on.websim.com" },
