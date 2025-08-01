@@ -129,27 +129,54 @@ a:hover {
     margin-bottom: 0.5rem;
 }
 
+#top-right-info {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+#top-right-info > div {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    flex: 1;
+}
+
+#top-right-info h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+#prize-pool-info {
+    text-align: center;
+}
+
 #prize-pool-info .pool-display {
     background-color: var(--primary-bg);
     border-radius: 6px;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
     margin-top: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
     font-size: 1.2rem;
+    flex-direction: column;
 }
 
 #total-tip-pool {
     color: var(--highlight-color);
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    line-height: 1;
 }
 
 .credits-icon {
     width: 24px;
     height: 24px;
+    margin-top: 0.5rem;
 }
 
 #examples-section .examples-grid {
@@ -216,7 +243,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    height: 100%;
+    min-height: 0; /* Fix for flex item overflow */
 }
 
 #load-more-button {
